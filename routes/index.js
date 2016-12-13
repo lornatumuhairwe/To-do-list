@@ -9,6 +9,7 @@ var userDataSchema = new Schema({
     details: String,
     toDoTask: String,
     status: String,
+    datepicker: String,
     author: String
 }, {collection: 'user-data'});
 
@@ -21,9 +22,10 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/get-data', function(req, res, next){
-    UserData.find()
+    UserData.find().sort('-_id')
         .then(function (doc) {
-            res.render('index', {items: doc});
+            //res.render('index', {items: doc});
+            res.send(JSON.stringify(doc));
         });
 
 });
@@ -34,13 +36,15 @@ router.post('/insert', function(req, res, next){
 		details: req.body.details,
         toDoTask: req.body.toDoTask,
         status: req.body.status,
+        datepicker: req.body.datepicker,
 		author: req.body.author
 	};
 
 	var data = new UserData(item);
 	data.save();
 
-	res.redirect('/get-data');
+	res.send(JSON.stringify({'success':1}));
+	//res.redirect('/');
 });
 
 router.post('/update', function(req, res, next){
@@ -49,6 +53,7 @@ router.post('/update', function(req, res, next){
         details: req.body.details,
         toDoTask: req.body.toDoTask,
         status: req.body.status,
+        datepicker: req.body.datepicker,
         author: req.body.author
     };
 
@@ -62,6 +67,7 @@ router.post('/update', function(req, res, next){
         doc.details = req.body.details,
         doc.toDoTask = req.body.toDoTask,
         doc.status = req.body.status,
+        doc.datepicker = req.body.datepicker,
         doc.author = req.body.author;
         doc.save();
 
@@ -71,10 +77,23 @@ router.post('/update', function(req, res, next){
 });
 
 router.post('/delete', function(req, res, next){
-    var id = req.body.id;
+    var id = req.body.task;
     UserData.findByIdAndRemove(id).exec();
 
-    res.redirect('/get-data');
+    res.redirect('/');
+});
+
+router.post('/complete', function(req, res, next){
+    var id = req.body.task;
+    UserData.findById(id, function (err, doc) {
+        if (err) {
+            console.log('No entry found');
+        }
+        doc.status = "Complete";
+        doc.save();
+    });
+
+    res.redirect('/');
 });
 
 module.exports = router;

@@ -36,6 +36,8 @@ section h3 {
 
 .get {
   background: #ecf0f1;
+  width: 60%;
+  font-size: medium;
 }
 
 .update {

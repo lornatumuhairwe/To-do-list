@@ -6,7 +6,6 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var hbs = require('express-handlebars');
 
-
 var index = require('./routes/index');
 //var users = require('./routes/users');
 
@@ -26,6 +25,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
+app.use('/delete/*', index);
 //app.use('/users', users);
 
 // catch 404 and forward to error handler

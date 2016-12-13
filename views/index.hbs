@@ -1,7 +1,23 @@
 <h1>To do List</h1>
+<section class="get">
+    <h3>View All Tasks</h3>
+    <div id="tasks">
+        {{# each items }}
+            <article class="item">
+                <div>Task: {{ this.title }}</div>
+                <div>Details: {{ this.details }}</div>
+                <div>Assigned to: {{ this.toDoTask }}</div>
+                <div>Author: {{ this.author }}</div>
+                <div>Status: {{ this.status }}</div>
+                <div>Due Date: {{ this.datepicker }}</div>
+                <div>ID: {{ this._id }}</div>
+            </article>
+        {{/each}}
+    </div>
+</section>
 <section class="insert">
     <h3>Add Task</h3>
-    <form action="/insert" method="post">
+    <form action="/insert" method="post" id="add-task" >
         <div class="input">
             <label for="title">Task</label>
             <input type="text" id="title" name="title">
@@ -28,25 +44,14 @@
                 <option value="Incomplete">Incomplete</option>
             </select>
         </div>
-        <button type="submit">ADD</button>
+        <div class="input">
+            <label for="datepicker">Due Date</label>
+            <input type="text" id="datepicker" name="datepicker">
+        </div>
+        <button type="submit" id="insertButton">ADD</button>
     </form>
 </section>
-<section class="get">
-    <h3>View All Tasks</h3>
-    <a href="/get-data">LOAD TASKS</a>
-    <div>
-        {{# each items }}
-            <article class="item">
-                <div>Task: {{ this.title }}</div>
-                <div>Details: {{ this.details }}</div>
-                <div>Assigned to: {{ this.toDoTask }}</div>
-                <div>Author: {{ this.author }}</div>
-                <div>Status: {{ this.status }}</div>
-                <div>ID: {{ this._id }}</div>
-            </article>
-        {{/each}}
-    </div>
-</section>
+<!--
 <section class="update">
     <h3>Update Task status</h3>
     <form action="/update" method="post">
@@ -80,6 +85,10 @@
                 <option value="Incomplete">Incomplete</option>
             </select>
         </div>
+        <div class="input">
+            <label for="datepicker">Due Date</label>
+            <input type="text" id="datepicker" name="datepicker">
+        </div>
         <button type="submit">UPDATE</button>
     </form>
 </section>
@@ -93,4 +102,4 @@
         </div>
         <button type="submit">DELETE</button>
     </form>
-</section>
+</section>-->
