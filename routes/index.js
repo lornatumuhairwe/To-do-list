@@ -8,6 +8,7 @@ var userDataSchema = new Schema({
     title: {type: String, required: true},
     details: String,
     toDoTask: String,
+    status: String,
     author: String
 }, {collection: 'user-data'});
 
@@ -32,6 +33,7 @@ router.post('/insert', function(req, res, next){
 		title: req.body.title,
 		details: req.body.details,
         toDoTask: req.body.toDoTask,
+        status: req.body.status,
 		author: req.body.author
 	};
 

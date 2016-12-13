@@ -18,6 +18,15 @@
             <label for="author">Author</label>
             <input type="text" id="author" name="author">
         </div>
+        <div class="input">
+            <label for="status">Status</label>
+            <select name="status">
+                <option value="">Recently assigned</option>
+                <option value="saab">Pending</option>
+                <option value="mercedes">Complete</option>
+                <option value="audi">Incomplete</option>
+            </select>
+        </div>
         <button type="submit">ADD</button>
     </form>
 </section>
@@ -31,6 +40,7 @@
                 <div>Details: {{ this.details }}</div>
                 <div>Assigned to: {{ this.toDoTask }}</div>
                 <div>Author: {{ this.author }}</div>
+                <div>Status: {{ this.status }}</div>
                 <div>ID: {{ this._id }}</div>
             </article>
         {{/each}}
