@@ -48,6 +48,7 @@ router.post('/update', function(req, res, next){
         title: req.body.title,
         details: req.body.details,
         toDoTask: req.body.toDoTask,
+        status: req.body.status,
         author: req.body.author
     };
 
@@ -60,6 +61,7 @@ router.post('/update', function(req, res, next){
         doc.title = req.body.title;
         doc.details = req.body.details,
         doc.toDoTask = req.body.toDoTask,
+        doc.status = req.body.status,
         doc.author = req.body.author;
         doc.save();
 
